@@ -18,6 +18,8 @@
 * The app shall iterate over the commits of the current branch from HEAD to the end, looking for the `first reachable tag`. This process shall be named `tag search process`.
 * The app shall define as `commit chain` the commits that are placed between HEAD and the `first reachable tag`.
 * The app shall define the `latest reachable tag` as 0.0.0 when a tag is not found in the `tag search process`.
+* The app shall check that the repo has `uncommited changes`
+* The app shall check that the repo has `not uploaded changes`
 
 ## Change kind
 
@@ -25,6 +27,7 @@
 * A `minor change` shall be a string that fits this regex `^minor\(([^\)]\)): (.*)$` in the commit description. The first capturing group value will be the `minor feature` and the second capturing group value will be the `minor feature description`.
 * A `patch change` shall be a string that fits this regex `^patch\(([^\)]\)): (.*)$` in the commit description. The first capturing group value will be the `patch feature` and the second capturing group value will be the `patch feature description`.
 * A `non-apply change` shall be a string that fits this regex `^non-apply\(([^\)]\)): (.*)$` in the commit description. The first capturing group value will be the `non-apply feature` and the second capturing group value will be the `non-apply feature description`.
+* The app shall generate a `current tag` from `first reachable tag` following semantic versioning rules.
 * The app shall increase a `major version` when a commit of the `commit chain` has some `major change` defined
 * The app shall increase a `minor version` when a commit of the `commit chain` has some `minor change` defined
 * The app shall increase a `patch version` when a commit of the `commit chain` has some `patch change` defined
@@ -38,5 +41,15 @@
 * The app shall group all the `minor feature` with it `minor feature description` in the `minor changes section` of the `changelog report`.
 * The app shall group all the `patch feature` with it `patch feature description` in the `patch changes section` of the `changelog report`.
 * The app shall group all the `non-apply feature` with it `non-apply feature description` in the `non-apply changes section` of the `changelog report`.
+
+## Outputs
+
+* The app shall generate a `.env` file with `first reachable tag`, `current tag`, `uncommited changes`, `not uploaded changes` and `changelog report` if it was configured to do so.
+* The app shall generate environment variables for the current bash process with `first reachable tag`, `current tag`, `uncommited changes`, `not uploaded changes` and `changelog report` if it was configured to do so.
+* The app shall generate environment variables for the current powershell process with `first reachable tag`, `current tag`, `uncommited changes`, `not uploaded changes` and `changelog report` if it was configured to do so.
+* The app shall generate a `.h` file with `current tag` if it was configured to do so.
+* The app shall generate a `.cs` file with `current tag` if it was configured to do so.
+* The app shall return 0 if the execution was done without any problem.
+* The app shall return -1 if the execution has experience any problem.
 
 TODO 
